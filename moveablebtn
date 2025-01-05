@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Link</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        .runaway-link {
+            display: inline-block;
+            position: absolute;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="runaway-link">Try to click me!</a>
+    </div>
+
+    <script>
+        const link = document.querySelector('.runaway-link');
+        const container = document.querySelector('.container');
+
+        link.addEventListener('mouseover', () => {
+            const containerRect = container.getBoundingClientRect();
+            const linkRect = link.getBoundingClientRect();
+
+            let newLeft = Math.random() * (containerRect.width - linkRect.width);
+            let newTop = Math.random() * (containerRect.height - linkRect.height);
+
+            link.style.left = `${newLeft}px`;
+            link.style.top = `${newTop}px`;
+        });
+    </script>
+</body>
+</html>
